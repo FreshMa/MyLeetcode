@@ -32,7 +32,6 @@ public:
 				//并将len的值重置为如今子串的长度(len-=pos相当于len = sub.length())
 				else {
 					sub.erase(0, pos + 1);
-					max = len > max ? len : max;
 					len = len - pos;
 				}
 				max = len > max ? len : max;
