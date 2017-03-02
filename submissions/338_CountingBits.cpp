@@ -14,6 +14,11 @@ It is very easy to come up with a solution with run time O(n*sizeof(integer)). B
 Space complexity should be O(n).
 Can you do it like a boss? Do it without using any builtin function like __builtin_popcount in c++ or in any other language.
 
+-----------------------------------------------
+首先想到计算每一个i的1bit位数，最后再加起来，但是这很明显不符合题目的用意；
+进一步观察每一位数字中1的位数的规律，发现如果i是2的整数次幂的话，i就只有一个1 bit，
+而且i+1 的1bit位就是i 的bit位加上1的bit位，一直到2i-1，是i的bit位加上i-1的bit位，2i又是一个 1bit位，
+这下规律就很明显了，可以用一个num+1大小的数组保存每一个i(0<=i<=num)的1 bit位数，以便后面直接使用，从而大大简化运算
 */
 class Solution {
 public:
