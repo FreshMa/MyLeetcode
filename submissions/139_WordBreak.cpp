@@ -71,3 +71,25 @@ public:
         return dp[slen];
     }
 };
+
+
+/*
+另外一种解法，效率更高，代码量最短
+dp[i]同样是代表s[0,i-1]这个子串是否能被wordDict里边的成员组成，不一样的在于循环方式
+外部i从1,s.length()循环，内部j循环wordDict的每一个词，看这个词是否等于外部循环的字符串后缀，如果相等的话，dp[i]就取决于去掉该后缀的dp值。
+*/
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        vector<bool> dp(s.length()+1, false);
+        dp[0] = true;
+        for (int i = 1; i <= s.length(); ++i) {
+            for (int j = 0; !dp[i] && j < wordDict.size(); ++j) {
+                int l = wordDict[j].length();
+                if (i >= l && s.substr(i-l, l) == wordDict[j]) dp[i] = dp[i-l];
+            }
+        }
+        return dp[s.length()];
+    }
+};
+
